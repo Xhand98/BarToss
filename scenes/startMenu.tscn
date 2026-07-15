@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cej7d47srop8f"]
+
+[ext_resource type="Script" uid="uid://bkij8i12lr2hc" path="res://scripts/startMenu.gd" id="1_j40ox"]
+[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="2_cpawi"]
+
+[node name="Control" type="Control" unique_id=1342660824]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=43903997]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j40ox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=101799351]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=891846230]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_cpawi")
+theme_override_font_sizes/font_size = 60
+text = "Bar - Toss"
+horizontal_alignment = 1
+
+[node name="playBtn" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1598226937]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Start"
+
+[node name="OptBtn" type="Button" parent="PanelContainer/VBoxContainer" unique_id=525116845]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Options"
+
+[node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer" unique_id=999889699]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Audio"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/playBtn" to="PanelContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/OptBtn" to="PanelContainer" method="_on_opt_btn_pressed"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/CheckButton" to="PanelContainer" method="_on_check_button_toggled"]

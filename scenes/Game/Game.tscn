@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bh2txqg34x6sy"]
+
+[node name="Game" type="Node2D" unique_id=750071476]
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=668051436]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
