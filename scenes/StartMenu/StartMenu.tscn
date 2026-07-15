@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cej7d47srop8f"]
 
-[ext_resource type="Script" uid="uid://bkij8i12lr2hc" path="res://scripts/startMenu.gd" id="1_j40ox"]
-[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="2_cpawi"]
+[ext_resource type="Script" uid="uid://bkij8i12lr2hc" path="res://scripts/startMenu.gd" id="1_80ocu"]
+[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="2_5a8d0"]
 
 [node name="Control" type="Control" unique_id=1342660824]
 layout_mode = 3
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_j40ox")
+script = ExtResource("1_80ocu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=101799351]
 layout_mode = 2
@@ -26,7 +26,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=891846230]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2_cpawi")
+theme_override_fonts/font = ExtResource("2_5a8d0")
 theme_override_font_sizes/font_size = 60
 text = "Bar - Toss"
 horizontal_alignment = 1

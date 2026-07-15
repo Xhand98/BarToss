@@ -1,5 +1,5 @@
 extends PanelContainer
-const GAME: Resource = preload("res://scenes/Game.tscn")
+const GAME: Resource = preload("res://scenes/Game/Game.tscn")
 
 
 @onready var check_button: CheckButton = $VBoxContainer/CheckButton

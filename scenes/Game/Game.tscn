@@ -1,10 +1,47 @@
-[gd_scene format=3 uid="uid://bh2txqg34x6sy"]
+[gd_scene format=3 uid="uid://10m3356wws74"]
 
-[node name="Game" type="Node2D" unique_id=750071476]
+[ext_resource type="Texture2D" uid="uid://depjbpdxqp78y" path="res://assets/images/bar.png" id="1_bekgd"]
+[ext_resource type="Script" uid="uid://dec1iebq2uawk" path="res://scripts/game.gd" id="2_2k76m"]
+[ext_resource type="Script" uid="uid://d4lxuydxdx8pe" path="res://scripts/stats.gd" id="3_tt4u6"]
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=668051436]
+[node name="Control" type="Control" unique_id=813377795]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_2k76m")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=634932375]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer" unique_id=15269716]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_bekgd")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1286501771]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
+script = ExtResource("3_tt4u6")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=965766971]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Presses: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="press_change" from="." to="VBoxContainer" method="_on_control_press_change"]
+[connection signal="button_down" from="CenterContainer/TextureButton" to="." method="_on_texture_button_button_down"]
