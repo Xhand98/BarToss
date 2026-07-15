@@ -39,7 +39,7 @@ script = ExtResource("3_tt4u6")
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=965766971]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Presses: 0"
+text = "Presses: 0 | Best Presses: 0 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
