@@ -1,6 +1,8 @@
 extends Control
 
 var savePath: String = "user://userdata.save"
+@onready var animated_sprite_2d: AnimatedSprite2D = $CenterContainer/AnimatedSprite2D
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 #const MENU: PackedScene = preload("res://scenes/StartMenu/StartMenu.tscn")
 
@@ -11,6 +13,7 @@ signal press_change;
 func _ready() -> void:
 	load_data()
 	print(presses)
+	animated_sprite_2d.play("idle")
 	emit_signal("press_change", presses, best_presses)
 
 
@@ -28,7 +31,6 @@ func load_data():
 		var file = FileAccess.open(savePath, FileAccess.READ)
 		var data = file.get_var()
 		file.close()
-		
 		if (typeof(data) == TYPE_DICTIONARY):
 			presses = data.get("current_presses", 0)
 			best_presses = data.get("best_presses", 0)
@@ -45,10 +47,20 @@ func _on_texture_button_button_down() -> void:
 		print("change")
 		presses = 0
 		get_tree().change_scene_to_file("res://scenes/StartMenu/StartMenu.tscn");
+		save_data()
+		return;
 
+	animated_sprite_2d.play("press")
+	audio_stream_player.play()
+	
 	presses += 1;
 	if (presses > best_presses):
 		best_presses = presses;
 
 	emit_signal("press_change", presses, best_presses)
 	save_data()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if (animated_sprite_2d.animation == "press"):
+		animated_sprite_2d.play("idle")

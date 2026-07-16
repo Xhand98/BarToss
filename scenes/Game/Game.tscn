@@ -1,8 +1,50 @@
 [gd_scene format=3 uid="uid://10m3356wws74"]
 
-[ext_resource type="Texture2D" uid="uid://depjbpdxqp78y" path="res://assets/images/bar.png" id="1_bekgd"]
 [ext_resource type="Script" uid="uid://dec1iebq2uawk" path="res://scripts/game.gd" id="2_2k76m"]
+[ext_resource type="Texture2D" uid="uid://cspio2jwptmpe" path="res://assets/images/SPACEALTERNATIVE.png" id="2_tt4u6"]
 [ext_resource type="Script" uid="uid://d4lxuydxdx8pe" path="res://scripts/stats.gd" id="3_tt4u6"]
+[ext_resource type="AudioStream" uid="uid://c356uk0s206s0" path="res://assets/audio/success.wav" id="4_1asa3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt4u6"]
+atlas = ExtResource("2_tt4u6")
+region = Rect2(0, 0, 98, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfncv"]
+atlas = ExtResource("2_tt4u6")
+region = Rect2(0, 0, 98, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6kj0"]
+atlas = ExtResource("2_tt4u6")
+region = Rect2(98, 0, 98, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21r26"]
+atlas = ExtResource("2_tt4u6")
+region = Rect2(196, 0, 98, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tt4u6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt4u6")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfncv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6kj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21r26")
+}],
+"loop": false,
+"name": &"press",
+"speed": 3.0
+}]
 
 [node name="Control" type="Control" unique_id=813377795]
 layout_mode = 3
@@ -13,6 +55,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_2k76m")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=871957787]
+root_node = NodePath("../CenterContainer/AnimatedSprite2D")
+
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=634932375]
 layout_mode = 1
 anchors_preset = 15
@@ -21,11 +66,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer" unique_id=1716267998]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(576.99994, 324)
+scale = Vector2(6.1547627, 6.1547627)
+sprite_frames = SubResource("SpriteFrames_tt4u6")
+animation = &"press"
+speed_scale = 15.0
+
 [node name="TextureButton" type="TextureButton" parent="CenterContainer" unique_id=15269716]
+texture_filter = 1
+texture_repeat = 1
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
-texture_normal = ExtResource("1_bekgd")
-ignore_texture_size = true
+size_flags_horizontal = 4
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1286501771]
@@ -43,5 +98,9 @@ text = "Presses: 0 | Best Presses: 0 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1595558505]
+stream = ExtResource("4_1asa3")
+
 [connection signal="press_change" from="." to="VBoxContainer" method="_on_control_press_change"]
+[connection signal="animation_finished" from="CenterContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="button_down" from="CenterContainer/TextureButton" to="." method="_on_texture_button_button_down"]
