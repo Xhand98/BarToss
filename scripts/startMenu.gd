@@ -15,8 +15,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_packed(GAME);
 
 
 func _on_opt_btn_pressed() -> void:
@@ -31,3 +29,16 @@ func _on_texture_button_toggled(toggled_on: bool) -> void:
 		audio_stream_player.stream_paused = true;
 	else:
 		audio_stream_player.stream_paused = false
+
+
+func _on_options_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_play_pressed() -> void:
+	get_tree().change_scene_to_packed(GAME);
+
+
+func _on_exit_pressed() -> void:
+	#get_tree().finish
+	pass

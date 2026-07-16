@@ -55,10 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_2k76m")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=871957787]
-root_node = NodePath("../CenterContainer/AnimatedSprite2D")
-
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=634932375]
+[node name="World" type="Control" parent="." unique_id=113117567]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +63,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer" unique_id=1716267998]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World" unique_id=871957787]
+root_node = NodePath("../CenterContainer/AnimatedSprite2D")
+
+[node name="CenterContainer" type="CenterContainer" parent="World" unique_id=634932375]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/CenterContainer" unique_id=1716267998]
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(576.99994, 324)
@@ -75,7 +84,7 @@ sprite_frames = SubResource("SpriteFrames_tt4u6")
 animation = &"press"
 speed_scale = 15.0
 
-[node name="TextureButton" type="TextureButton" parent="CenterContainer" unique_id=15269716]
+[node name="TextureButton" type="TextureButton" parent="World/CenterContainer" unique_id=15269716]
 texture_filter = 1
 texture_repeat = 1
 custom_minimum_size = Vector2(600, 200)
@@ -83,15 +92,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1286501771]
+[node name="VBoxContainer" type="VBoxContainer" parent="World" unique_id=1286501771]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = 488.0
 offset_bottom = 55.0
 grow_horizontal = 2
 script = ExtResource("3_tt4u6")
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=965766971]
+[node name="Label" type="Label" parent="World/VBoxContainer" unique_id=965766971]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Presses: 0 | Best Presses: 0 "
@@ -101,6 +111,6 @@ vertical_alignment = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1595558505]
 stream = ExtResource("4_1asa3")
 
-[connection signal="press_change" from="." to="VBoxContainer" method="_on_control_press_change"]
-[connection signal="animation_finished" from="CenterContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="button_down" from="CenterContainer/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="press_change" from="." to="World/VBoxContainer" method="_on_control_press_change"]
+[connection signal="animation_finished" from="World/CenterContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="button_down" from="World/CenterContainer/TextureButton" to="." method="_on_texture_button_button_down"]
