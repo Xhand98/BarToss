@@ -3,7 +3,6 @@ const GAME: Resource = preload("res://scenes/Game/Game.tscn")
 
 @onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
-@onready var check_button: CheckButton = $VBoxContainer/CheckButton
 var audio_muted: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c0qn1oj7jabnd"]
+
+[ext_resource type="SpriteFrames" uid="uid://wj7x14n4px8o" path="res://assets/images/explosion/spritesheet.tres" id="1_b3xi3"]
+[ext_resource type="AudioStream" uid="uid://cq0sqiwfkkehw" path="res://assets/images/myinstants.mp3" id="3_adw4f"]
+[ext_resource type="Script" uid="uid://bnlshajcskcof" path="res://effects/Explosion/explosion.gd" id="31_cqeoq"]
+
+[node name="Explosion" type="Node2D" unique_id=383910729]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1253089862]
+scale = Vector2(4.015, 4.015)
+sprite_frames = ExtResource("1_b3xi3")
+frame = 29
+frame_progress = 1.0
+script = ExtResource("31_cqeoq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimatedSprite2D" unique_id=1974005787]
+stream = ExtResource("3_adw4f")
+autoplay = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]

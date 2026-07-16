@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dxa1p3i0nnoav"]
+
+[ext_resource type="Script" uid="uid://fhcgnju241a7" path="res://scenes/GameOver/game_over.gd" id="1_kgfi2"]
+[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="1_xhtoj"]
+[ext_resource type="Texture2D" uid="uid://bi65ssffndvgk" path="res://assets/images/menu/game_over/main_menu.png" id="3_51nbm"]
+[ext_resource type="Texture2D" uid="uid://b2fiig7jcpthm" path="res://assets/images/menu/game_over/main_menu_hover.png" id="4_1kqld"]
+[ext_resource type="Texture2D" uid="uid://uljesaumbgp4" path="res://assets/images/menu/game_over/share.png" id="5_3nl22"]
+[ext_resource type="Texture2D" uid="uid://dq1hmqdtu50n7" path="res://assets/images/menu/game_over/share_hover.png" id="6_h8xkf"]
+
+[node name="GameOver" type="Control" unique_id=1780607692]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kgfi2")
+
+[node name="S_container" type="PanelContainer" parent="." unique_id=10510069]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 259.0
+offset_right = 493.0
+offset_bottom = 395.0
+
+[node name="S_label" type="Label" parent="S_container" unique_id=747476395]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="HS_container" type="PanelContainer" parent="." unique_id=867943470]
+layout_mode = 0
+offset_left = 677.0
+offset_top = 252.0
+offset_right = 1036.0
+offset_bottom = 388.0
+
+[node name="HS_label" type="Label" parent="HS_container" unique_id=1363092722]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Record: 0"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=223870381]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1435134512]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xhtoj")
+theme_override_font_sizes/font_size = 45
+text = "
+
+You lost 💀"
+horizontal_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1736445964]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 496.0
+offset_right = 597.0
+offset_bottom = 618.0
+texture_normal = ExtResource("3_51nbm")
+texture_hover = ExtResource("4_1kqld")
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=406166084]
+layout_mode = 0
+offset_left = 675.0
+offset_top = 490.0
+offset_right = 1026.0
+offset_bottom = 630.0
+texture_normal = ExtResource("5_3nl22")
+texture_hover = ExtResource("6_h8xkf")
+
+[node name="Timer" type="Timer" parent="." unique_id=1894124318]
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

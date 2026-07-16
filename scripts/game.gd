@@ -2,22 +2,30 @@ extends Control
 
 var savePath: String = "user://userdata.save"
 @onready var animated_sprite_2d: AnimatedSprite2D = $World/CenterContainer/AnimatedSprite2D
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $World/CenterContainer/AnimatedSprite2D/AudioStreamPlayer
 @onready var world: Control = $World
+@onready var timer: Timer = $Timer
+@onready var fire_song: AudioStreamPlayer = $fire_mode
+@onready var background: TextureRect = $World/TextureRect
+
+var normal_texture = preload("res://assets/images/backgrounds/1.png")
+var fire_texture = preload("res://assets/images/backgrounds/fire.png")
 
 var shake_str := 0.0
 var original_pos := Vector2.ZERO
 
-const exp1 = preload("res://effects/Explosion.tscn")
+const exp1 = preload("res://effects/Explosion/Explosion.tscn")
 
 #const MENU: PackedScene = preload("res://scenes/StartMenu/StartMenu.tscn")
 
 var presses: int = 0;
 var best_presses: int = 0;
+var last_press: int = 0
 signal press_change;
 var fire_mode: bool = false;
 
 func _ready() -> void:
+	background.texture = normal_texture
 	load_data()
 	print(presses)
 	original_pos = world.position
@@ -28,7 +36,8 @@ func _ready() -> void:
 func save_data():
 	var data = {
 		"current_presses": presses,
-		"best_presses": best_presses
+		"best_presses": best_presses,
+		"last_press": last_press
 	}
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	file.store_var(data)
@@ -69,8 +78,9 @@ func _process(delta: float) -> void:
 func _on_texture_button_button_down() -> void:
 	if ((randi() % 3) == 1):
 		print("change")
+		last_press = presses
 		presses = 0
-		get_tree().change_scene_to_file("res://scenes/StartMenu/StartMenu_2.tscn");
+		get_tree().change_scene_to_file("res://scenes/GameOver/GameOver.tscn");
 		save_data()
 		return;
 
@@ -82,8 +92,12 @@ func _on_texture_button_button_down() -> void:
 		best_presses = presses;
 	if (presses > 2 and !fire_mode):
 		fire_mode = true;
+		background.texture = fire_texture
 		shake_str = 15.0
 		spawn_flames()
+		$Timer.start()
+		fire_song.play()
+		
 
 	emit_signal("press_change", presses, best_presses)
 	save_data()
@@ -103,3 +117,27 @@ func spawn_flames() -> void:
 		)
 		
 		add_child(flame)
+
+func spawn_exp():
+	var exp = exp1.instantiate()
+	
+	var viewport = get_viewport_rect().size
+	exp.position = Vector2(
+		randf_range(0, viewport.x),
+		randf_range(0, viewport.y)
+	)
+	
+	add_child(exp)
+	
+func _on_explosion_finished():
+	if fire_mode:
+		spawn_exp()
+
+
+func _on_timer_timeout() -> void:
+	if fire_mode:
+		spawn_exp()
+
+
+func _on_fire_mode_finished() -> void:
+	fire_song.play()
