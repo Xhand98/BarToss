@@ -1,8 +1,8 @@
 extends Control
 
 var savePath: String = "user://userdata.save"
-@onready var animated_sprite_2d: AnimatedSprite2D = $World/CenterContainer/AnimatedSprite2D
-@onready var audio_stream_player: AudioStreamPlayer = $World/CenterContainer/AnimatedSprite2D/AudioStreamPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $World/CenterContainer/TextureButton/AnimatedSprite2D
+@onready var audio_stream_player: AudioStreamPlayer = $World/CenterContainer/TextureButton/AnimatedSprite2D/AudioStreamPlayer
 @onready var world: Control = $World
 @onready var timer: Timer = $Timer
 @onready var fire_song: AudioStreamPlayer = $fire_mode

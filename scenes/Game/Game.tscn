@@ -76,28 +76,15 @@ grow_vertical = 2
 texture = ExtResource("2_f8ls4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World" unique_id=871957787]
-root_node = NodePath("../CenterContainer/AnimatedSprite2D")
+root_node = NodePath("../CenterContainer/TextureButton/AnimatedSprite2D")
 
 [node name="CenterContainer" type="CenterContainer" parent="World" unique_id=634932375]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/CenterContainer" unique_id=1716267998]
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(576.99994, 324)
-scale = Vector2(6.1547627, 6.1547627)
-sprite_frames = SubResource("SpriteFrames_tt4u6")
-animation = &"press"
-speed_scale = 15.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World/CenterContainer/AnimatedSprite2D" unique_id=1595558505]
-stream = ExtResource("4_1asa3")
 
 [node name="TextureButton" type="TextureButton" parent="World/CenterContainer" unique_id=15269716]
 texture_filter = 1
@@ -106,6 +93,19 @@ custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 stretch_mode = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/CenterContainer/TextureButton" unique_id=1716267998]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(300.99994, 100)
+scale = Vector2(6.1547627, 6.1547627)
+sprite_frames = SubResource("SpriteFrames_tt4u6")
+animation = &"press"
+speed_scale = 15.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World/CenterContainer/TextureButton/AnimatedSprite2D" unique_id=1595558505]
+stream = ExtResource("4_1asa3")
+volume_db = -5.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="World" unique_id=1286501771]
 layout_mode = 1
@@ -130,9 +130,10 @@ wait_time = 0.5
 
 [node name="fire_mode" type="AudioStreamPlayer" parent="." unique_id=135797314]
 stream = ExtResource("6_50swi")
+volume_db = -8.0
 
 [connection signal="press_change" from="." to="World/VBoxContainer" method="_on_control_press_change"]
-[connection signal="animation_finished" from="World/CenterContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="button_down" from="World/CenterContainer/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="animation_finished" from="World/CenterContainer/TextureButton/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="fire_mode" to="." method="_on_fire_mode_finished"]

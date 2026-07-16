@@ -55,7 +55,8 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_iw7ny")
 theme_override_font_sizes/font_size = 58
-text = "Bar - Toss"
+text = "
+Bar - Toss"
 horizontal_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=1447255677]
