@@ -1,13 +1,13 @@
 extends Control
 
 var savePath: String = "user://userdata.save"
-@onready var animated_sprite_2d: AnimatedSprite2D = $World/CenterContainer/VBoxContainer/Spacebar/AnimatedSprite2D
-@onready var audio_stream_player: AudioStreamPlayer = $World/CenterContainer/VBoxContainer/Spacebar/AnimatedSprite2D/AudioStreamPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $World/VBoxContainer2/Spacebar/AnimatedSprite2D/AudioStreamPlayer
 @onready var world: Control = $World
 @onready var timer: Timer = $Timer
 @onready var fire_song: AudioStreamPlayer = $fire_mode
 @onready var background: TextureRect = $TextureRect
-@onready var coin = $World/CenterContainer/Coin/AnimatedSprite2D
+@onready var coin: Coin = $World/VBoxContainer2/Coin
+@onready var animated_sprite_2d: AnimatedSprite2D = $World/VBoxContainer2/Spacebar/AnimatedSprite2D
 
 @export_file("*.tscn") var next_scene: String
 

@@ -1,5 +1,6 @@
-extends AnimatedSprite2D
-@onready var coin: AnimatedSprite2D = $"."
+class_name Coin
+extends Node2D
+@onready var coin: AnimatedSprite2D = $AnimatedSprite2D
 
 signal flipped(result)
 var flipping := false
@@ -34,20 +35,20 @@ func flip_coin() -> void:
 
 	print("Starting flip")
 
-	play("flip")
+	coin.play("flip")
 
-	await animation_finished
+	await coin.animation_finished
 
 	print("Flip finished")
 
 	if result == 0:
 		print("Heads")
-		play("heads")
+		coin.play("heads")
 	else:
 		print("Tails")
-		play("tails")
+		coin.play("tails")
 		
-	await animation_finished
+	await coin.animation_finished
 	flipped.emit(result)
 
 	flipping = false
