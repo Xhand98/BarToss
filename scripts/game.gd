@@ -81,15 +81,30 @@ func _process(delta: float) -> void:
 
 
 func _on_texture_button_button_down() -> void:
-	if ((randi() % 3) == 1):
-		print("change")
-		last_press = presses
-		presses = 0
-		SceneManager.transition_to(next_scene)
-		save_data()
-		return;
+	if coin.flipping:
+		return
+	#if ((randi() % 3) == 1):
+		#print("change")
+		#last_press = presses
+		#presses = 0
+		#SceneManager.transition_to(next_scene)
+		#save_data()
+		#return;
 
 	coin.flip_coin()
+	var result = await coin.flipped
+	
+	print("Coin result:", result)
+	print("Player choice:", GameState.coin_choice)
+
+	if result == GameState.coin_choice:
+		print("Correct!")
+	else:
+		print("Wrong!")
+		game_over()
+		return
+	
+	
 	animated_sprite_2d.play("press")
 	audio_stream_player.play()
 	
@@ -151,3 +166,12 @@ func _on_fire_mode_finished() -> void:
 func load_scene() -> void:
 	await get_tree().process_frame
 	loaded.emit()
+
+func game_over() -> void:
+	print("GAME OVER")
+
+	last_press = presses
+	presses = 0
+	save_data()
+
+	SceneManager.transition_to(next_scene)

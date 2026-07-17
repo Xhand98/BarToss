@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_va3lp")
-next_scene = "uid://10m3356wws74"
+next_scene = "uid://bgr68cuc5bmoe"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=43903997]
 z_index = 2

@@ -46,5 +46,8 @@ func flip_coin() -> void:
 	else:
 		print("Tails")
 		play("tails")
+		
+	await animation_finished
+	flipped.emit(result)
 
 	flipping = false

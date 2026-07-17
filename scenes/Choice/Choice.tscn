@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bgr68cuc5bmoe"]
 
-[ext_resource type="Script" uid="uid://rbbfqrnjl46c" path="res://scenes/Choose/choose.gd" id="1_q7tyn"]
-[ext_resource type="Texture2D" uid="uid://b2n74buy440xh" path="res://assets/images/choose/silvercoin-heads.png" id="1_wsu4b"]
-[ext_resource type="Texture2D" uid="uid://dc0r1r676phxg" path="res://assets/images/choose/silvercoin-tails.png" id="2_whxk7"]
-[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="3_whxk7"]
+[ext_resource type="Script" uid="uid://rbbfqrnjl46c" path="res://scenes/Choice/choise.gd" id="1_02amo"]
+[ext_resource type="Texture2D" uid="uid://b2n74buy440xh" path="res://assets/images/choose/silvercoin-heads.png" id="2_x8sy5"]
+[ext_resource type="Texture2D" uid="uid://dc0r1r676phxg" path="res://assets/images/choose/silvercoin-tails.png" id="3_tc67j"]
+[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="4_qt5e6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7tyn"]
-font = ExtResource("3_whxk7")
+font = ExtResource("4_qt5e6")
 font_size = 32
 
 [node name="Choose" type="Control" unique_id=1000598228]
@@ -16,7 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_q7tyn")
+script = ExtResource("1_02amo")
+next_scene = "uid://10m3356wws74"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=860655138]
 layout_mode = 1
@@ -35,14 +36,14 @@ alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer2/HBoxContainer" unique_id=398021493]
 layout_mode = 2
-texture_normal = ExtResource("1_wsu4b")
+texture_normal = ExtResource("2_x8sy5")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=926068204]
 layout_mode = 2
 
 [node name="TextureButton2" type="TextureButton" parent="VBoxContainer2/HBoxContainer/HBoxContainer2" unique_id=1683332809]
 layout_mode = 2
-texture_normal = ExtResource("2_whxk7")
+texture_normal = ExtResource("3_tc67j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=368361868]
 layout_mode = 1
