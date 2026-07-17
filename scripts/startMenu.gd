@@ -24,14 +24,8 @@ func _on_opt_btn_pressed() -> void:
 	#get_tree().change_scene_to_packed(GAME);
 	pass
 
-func _on_texture_button_toggled(toggled_on: bool) -> void:
-	audio_muted = toggled_on;
+#func _on_texture_button_toggled(toggled_on: bool) -> void:
 	
-	AudioServer.set_bus_mute(0, audio_muted)
-	if (audio_muted == true): 
-		audio_stream_player.stream_paused = true;
-	else:
-		audio_stream_player.stream_paused = false
 
 
 func _on_options_pressed() -> void:
@@ -54,4 +48,10 @@ func load_scene() -> void:
 
 
 func _on_music_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	audio_muted = toggled_on;
+	
+	AudioServer.set_bus_mute(0, audio_muted)
+	if (audio_muted == true): 
+		audio_stream_player.stream_paused = true;
+	else:
+		audio_stream_player.stream_paused = false
