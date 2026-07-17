@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bgr68cuc5bmoe"]
+
+[ext_resource type="Script" uid="uid://rbbfqrnjl46c" path="res://scenes/Choose/choose.gd" id="1_q7tyn"]
+[ext_resource type="Texture2D" uid="uid://b2n74buy440xh" path="res://assets/images/choose/silvercoin-heads.png" id="1_wsu4b"]
+[ext_resource type="Texture2D" uid="uid://dc0r1r676phxg" path="res://assets/images/choose/silvercoin-tails.png" id="2_whxk7"]
+[ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="3_whxk7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q7tyn"]
+font = ExtResource("3_whxk7")
+font_size = 32
+
+[node name="Choose" type="Control" unique_id=1000598228]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q7tyn")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=860655138]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -39.5
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1324503417]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer2/HBoxContainer" unique_id=398021493]
+layout_mode = 2
+texture_normal = ExtResource("1_wsu4b")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=926068204]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer2/HBoxContainer/HBoxContainer2" unique_id=1683332809]
+layout_mode = 2
+texture_normal = ExtResource("2_whxk7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=368361868]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2011021987]
+layout_mode = 2
+text = "
+
+Choose a side:"
+label_settings = SubResource("LabelSettings_q7tyn")
+horizontal_alignment = 1
+
+[connection signal="button_down" from="VBoxContainer2/HBoxContainer/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="VBoxContainer2/HBoxContainer/HBoxContainer2/TextureButton2" to="." method="_on_texture_button_2_button_down"]

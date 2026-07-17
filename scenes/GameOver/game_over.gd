@@ -5,14 +5,16 @@ var savePath: String = "user://userdata.save"
 var presses: int = 0;
 var best_presses: int = 0;
 var last_press:int = 0
-@onready var hs_label: Label = $HS_container/HS_label
-@onready var s_label: Label = $VBoxContainer/Label
-@onready var sh_label: Label = $S_container/S_label
+@onready var hs_label: Label = $VBoxContainer3/HS_container/HS_label
+@onready var s_label: Label = $VBoxContainer2/Label
+@onready var sh_label: Label = $VBoxContainer3/S_container/S_label
 @onready var timer: Timer = $Timer
+
+@export_file("*.tscn") var next_scene: String
 
 const exp1 = preload("res://effects/Lose_laugh/laugh.tscn")
 
-
+signal loaded
 
 func load_data():
 	if (FileAccess.file_exists(savePath)):
@@ -42,6 +44,8 @@ func _ready() -> void:
 	load_data()
 	spawn_flames()
 	spawn_exp()
+	
+	print(DisplayServer.mouse_get_mode())
 	sh_label.text = "Score: " + str(last_press)
 	hs_label.text = "Record: " + str(best_presses)
 	
@@ -81,8 +85,16 @@ func _on_timer_timeout() -> void:
 		spawn_exp()
 
 func _on_texture_button_button_down() -> void:
-	get_tree().change_scene_to_file("res://scenes/StartMenu/StartMenu.tscn");
+	SceneManager.transition_to(next_scene)
 
 
 func _on_texture_button_2_button_down() -> void:
 	OS.shell_open("https://x.com/intent/tweet?text=I+just+got+this+score+on+this+luck-based+game%21+%5Bpaste+image+plz%5D&url=https%3A%2F%2Fxhand98.itch.io%2Fbartoss&hashtags=bartoss,xhand98,gamedev")
+
+
+func _on_texture_button_mouse_entered() -> void:
+	print("entered") # Replace with function body.
+
+func load_scene() -> void:
+	await get_tree().process_frame
+	loaded.emit()

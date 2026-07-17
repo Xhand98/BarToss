@@ -15,68 +15,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kgfi2")
+next_scene = "uid://cej7d47srop8f"
 
-[node name="S_container" type="PanelContainer" parent="." unique_id=10510069]
-layout_mode = 0
-offset_left = 134.0
-offset_top = 259.0
-offset_right = 493.0
-offset_bottom = 395.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2046164719]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="S_label" type="Label" parent="S_container" unique_id=747476395]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=513205590]
+z_index = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1736445964]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("3_51nbm")
+texture_hover = ExtResource("4_1kqld")
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=406166084]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("5_3nl22")
+texture_hover = ExtResource("6_h8xkf")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1338118451]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 59.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=1435134512]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xhtoj")
+theme_override_font_sizes/font_size = 45
+text = "You lost 💀"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=457459319]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -59.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="S_container" type="PanelContainer" parent="VBoxContainer3" unique_id=10510069]
+layout_mode = 2
+
+[node name="S_label" type="Label" parent="VBoxContainer3/S_container" unique_id=747476395]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "Score: 0"
 horizontal_alignment = 1
 
-[node name="HS_container" type="PanelContainer" parent="." unique_id=867943470]
-layout_mode = 0
-offset_left = 677.0
-offset_top = 252.0
-offset_right = 1036.0
-offset_bottom = 388.0
+[node name="HS_container" type="PanelContainer" parent="VBoxContainer3" unique_id=867943470]
+layout_mode = 2
 
-[node name="HS_label" type="Label" parent="HS_container" unique_id=1363092722]
+[node name="HS_label" type="Label" parent="VBoxContainer3/HS_container" unique_id=1363092722]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Record: 0"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=223870381]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1435134512]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer3" unique_id=1262869675]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_xhtoj")
-theme_override_font_sizes/font_size = 45
-text = "
-
-You lost 💀"
-horizontal_alignment = 1
-
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1736445964]
-layout_mode = 0
-offset_left = 62.0
-offset_top = 496.0
-offset_right = 597.0
-offset_bottom = 618.0
-texture_normal = ExtResource("3_51nbm")
-texture_hover = ExtResource("4_1kqld")
-
-[node name="TextureButton2" type="TextureButton" parent="." unique_id=406166084]
-layout_mode = 0
-offset_left = 675.0
-offset_top = 490.0
-offset_right = 1026.0
-offset_bottom = 630.0
-texture_normal = ExtResource("5_3nl22")
-texture_hover = ExtResource("6_h8xkf")
+size_flags_horizontal = 8
 
 [node name="Timer" type="Timer" parent="." unique_id=1894124318]
 
-[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
-[connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

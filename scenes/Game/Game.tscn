@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d4lxuydxdx8pe" path="res://scripts/stats.gd" id="3_tt4u6"]
 [ext_resource type="AudioStream" uid="uid://c356uk0s206s0" path="res://assets/audio/success.wav" id="4_1asa3"]
 [ext_resource type="FontFile" uid="uid://dpcdqiqxbhoov" path="res://assets/fonts/Sekuya-Regular.ttf" id="4_yqgss"]
+[ext_resource type="PackedScene" uid="uid://dhhujck75ak0o" path="res://scenes/Coin/coin.tscn" id="5_lfncv"]
 [ext_resource type="AudioStream" uid="uid://dt0h7nsn8kyn5" path="res://assets/audio/rock_mode.ogg" id="6_50swi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tt4u6"]
@@ -57,6 +58,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_2k76m")
+next_scene = "uid://dxa1p3i0nnoav"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1369316934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f8ls4")
 
 [node name="World" type="Control" parent="." unique_id=113117567]
 layout_mode = 1
@@ -66,44 +77,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="World" unique_id=1369316934]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_f8ls4")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World" unique_id=871957787]
-root_node = NodePath("../CenterContainer/TextureButton/AnimatedSprite2D")
+root_node = NodePath("../CenterContainer/VBoxContainer/Spacebar/AnimatedSprite2D")
 
 [node name="CenterContainer" type="CenterContainer" parent="World" unique_id=634932375]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -120.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="World/CenterContainer" unique_id=15269716]
+[node name="Coin" parent="World/CenterContainer" unique_id=561022357 instance=ExtResource("5_lfncv")]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(568, -6)
+scale = Vector2(3, 3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="World/CenterContainer" unique_id=530343216]
+layout_mode = 2
+
+[node name="Spacebar" type="TextureButton" parent="World/CenterContainer/VBoxContainer" unique_id=15269716]
 texture_filter = 1
 texture_repeat = 1
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 stretch_mode = 0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/CenterContainer/TextureButton" unique_id=1716267998]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/CenterContainer/VBoxContainer/Spacebar" unique_id=1716267998]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(300.99994, 100)
+position = Vector2(300.99994, 188)
 scale = Vector2(6.1547627, 6.1547627)
 sprite_frames = SubResource("SpriteFrames_tt4u6")
 animation = &"press"
 speed_scale = 15.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World/CenterContainer/TextureButton/AnimatedSprite2D" unique_id=1595558505]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World/CenterContainer/VBoxContainer/Spacebar/AnimatedSprite2D" unique_id=1595558505]
 stream = ExtResource("4_1asa3")
 volume_db = -5.0
 
@@ -133,7 +148,7 @@ stream = ExtResource("6_50swi")
 volume_db = -8.0
 
 [connection signal="press_change" from="." to="World/VBoxContainer" method="_on_control_press_change"]
-[connection signal="button_down" from="World/CenterContainer/TextureButton" to="." method="_on_texture_button_button_down"]
-[connection signal="animation_finished" from="World/CenterContainer/TextureButton/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="button_down" from="World/CenterContainer/VBoxContainer/Spacebar" to="." method="_on_texture_button_button_down"]
+[connection signal="animation_finished" from="World/CenterContainer/VBoxContainer/Spacebar/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="fire_mode" to="." method="_on_fire_mode_finished"]
